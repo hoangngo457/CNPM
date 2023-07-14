@@ -1,0 +1,74 @@
+﻿@model WebApplication1.Models.ImportTicket
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ImportTicket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.addressDelivery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.addressDelivery)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.nameProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.nameProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Provider.nameProvider)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Provider.nameProvider)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CNPMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="idAdmin" />
+    </Key>
+    <Property Name="idAdmin" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="gender" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExportTicket">
+    <Key>
+      <PropertyRef Name="idExport" />
+      <PropertyRef Name="idProduct" />
+    </Key>
+    <Property Name="idExport" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="idProduct" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="addressDelivery" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="totalPrice" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ImportTicket">
+    <Key>
+      <PropertyRef Name="idImport" />
+      <PropertyRef Name="idProduct" />
+    </Key>
+    <Property Name="idImport" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="idProduct" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="addressDelivery" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="totalPrice" Type="int" Nullable="false" />
+    <Property Name="idProvider" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="idInvoice" />
+      <PropertyRef Name="idOrder" />
+    </Key>
+    <Property Name="idInvoice" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="idOrder" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="idOrder" />
+      <PropertyRef Name="idProduct" />
+      <PropertyRef Name="date" />
+    </Key>
+    <Property Name="idOrder" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="idProduct" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="addressDelivery" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="idProduct" />
+    </Key>
+    <Property Name="idProduct" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="nameProduct" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="category" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="imageProduct" Type="varchar" MaxLength="50" />
+    <Property Name="status" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="inventory" Type="nvarchar" MaxLength="30" />
+    <Property Name="idProvider" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Provider">
+    <Key>
+      <PropertyRef Name="idProvider" />
+    </Key>
+    <Property Name="idProvider" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="nameProvider" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__ExportTic__idPro__4316F928">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ExportTicket" Type="Self.ExportTicket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="idProduct" />
+      </Principal>
+      <Dependent Role="ExportTicket">
+        <PropertyRef Name="idProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ImportTic__idPro__45F365D3">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ImportTicket" Type="Self.ImportTicket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="idProduct" />
+      </Principal>
+      <Dependent Role="ImportTicket">
+        <PropertyRef Name="idProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ImportTic__idPro__46E78A0C">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+    <End Role="ImportTicket" Type="Self.ImportTicket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="idProvider" />
+      </Principal>
+      <Dependent Role="ImportTicket">
+        <PropertyRef Name="idProvider" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__idProduc__3E52440B">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="idProduct" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="idProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__idProvi__3B75D760">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="idProvider" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="idProvider" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CNPMModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExportTicket" EntityType="Self.ExportTicket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImportTicket" EntityType="Self.ImportTicket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ExportTic__idPro__4316F928" Association="Self.FK__ExportTic__idPro__4316F928">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ExportTicket" EntitySet="ExportTicket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ImportTic__idPro__45F365D3" Association="Self.FK__ImportTic__idPro__45F365D3">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ImportTicket" EntitySet="ImportTicket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ImportTic__idPro__46E78A0C" Association="Self.FK__ImportTic__idPro__46E78A0C">
+      <End Role="Provider" EntitySet="Provider" />
+      <End Role="ImportTicket" EntitySet="ImportTicket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__idProduc__3E52440B" Association="Self.FK__Orders__idProduc__3E52440B">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__idProvi__3B75D760" Association="Self.FK__Product__idProvi__3B75D760">
+      <End Role="Provider" EntitySet="Provider" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

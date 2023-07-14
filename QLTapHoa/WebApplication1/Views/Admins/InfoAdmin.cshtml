@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "InfoAdmin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin-top: 40px;">
+    <h2>THÔNG TIN</h2>
+    <hr />
+
+    
+        <table style="border-collapse:separate; border-spacing:5px;">
+            <tr>
+                <td></td>
+                <td><input type="hidden" name="CodeCustomer" value="@Session["idAdmin"]" required class="form-input" /></td>
+            </tr>
+            <tr>
+                <td style="font-size: 20px;"> Họ tên:  </td>
+                <td><input type="text" name="NameCustomer" value="@Session["username"]" required readonly class="form-input" /></td>
+            </tr>
+            <tr>
+                <td style="font-size: 20px;"> Điện thoại:  </td>
+                <td><input type="text" name="PhoneCustomer" value="@Session["phone"]" required readonly class="form-input" /></td>
+            </tr>
+            <tr>
+                <td style="font-size: 20px;"> Giới tính:  </td>
+                <td><input type="text" name="PhoneCustomer" value="@Session["gender"]" required readonly class="form-input" /></td>
+            </tr>
+            <tr>
+                <td style="font-size: 20px;"> Email:  </td>
+                <td><input type="text" name="PhoneCustomer" value="@Session["email"]" required readonly class="form-input" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <a href="@Url.Action("LogOutUser", "Admins")" class="btn btn-danger">Đăng xuất</a>
+                </td>
+            </tr>
+        </table>
+    
+</div>
+

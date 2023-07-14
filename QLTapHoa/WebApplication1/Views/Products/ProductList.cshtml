@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WebApplication1.Models.Product>
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @foreach (var pro in Model)
+    {
+        <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card-pro product-item">
+                <img src="~/Content/images/@pro.imageProduct" width="200" height="250" style="object-fit:contain" />
+                <p style="font-size: 17px;">@Html.DisplayFor(model => pro.nameProduct)</p>
+                <p>Đơn giá : <font color="red">@Html.DisplayFor(model => pro.price)</font></p>
+                <p style="text-align: center; padding-bottom: 20px;">
+                    @Html.ActionLink("Chi tiết", "Details", new { id = pro.idProduct }, new { @class = "btn btn-primary" })
+
+                </p>
+            </div>
+        </div>
+    }
+</div>
+

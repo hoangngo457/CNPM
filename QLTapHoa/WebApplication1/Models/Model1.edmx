@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CNPMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="idAdmin" />
+          </Key>
+          <Property Name="idAdmin" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="gender" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExportTicket">
+          <Key>
+            <PropertyRef Name="idExport" />
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idExport" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="idProduct" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="addressDelivery" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="totalPrice" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImportTicket">
+          <Key>
+            <PropertyRef Name="idImport" />
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idImport" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="idProduct" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="addressDelivery" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="totalPrice" Type="int" Nullable="false" />
+          <Property Name="idProvider" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="idInvoice" />
+            <PropertyRef Name="idOrder" />
+          </Key>
+          <Property Name="idInvoice" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="idOrder" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="idOrder" />
+            <PropertyRef Name="idProduct" />
+            <PropertyRef Name="date" />
+          </Key>
+          <Property Name="idOrder" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="idProduct" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="addressDelivery" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idProduct" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="nameProduct" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="category" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="imageProduct" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="inventory" Type="nvarchar" MaxLength="30" />
+          <Property Name="idProvider" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Provider">
+          <Key>
+            <PropertyRef Name="idProvider" />
+          </Key>
+          <Property Name="idProvider" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="nameProvider" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__ExportTic__idPro__4316F928">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ExportTicket" Type="Self.ExportTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="ExportTicket">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ImportTic__idPro__45F365D3">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ImportTicket" Type="Self.ImportTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="ImportTicket">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ImportTic__idPro__46E78A0C">
+          <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+          <End Role="ImportTicket" Type="Self.ImportTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="idProvider" />
+            </Principal>
+            <Dependent Role="ImportTicket">
+              <PropertyRef Name="idProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__idProduc__3E52440B">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__idProvi__3B75D760">
+          <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="idProvider" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="idProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CNPMModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExportTicket" EntityType="Self.ExportTicket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImportTicket" EntityType="Self.ImportTicket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ExportTic__idPro__4316F928" Association="Self.FK__ExportTic__idPro__4316F928">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ExportTicket" EntitySet="ExportTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ImportTic__idPro__45F365D3" Association="Self.FK__ImportTic__idPro__45F365D3">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ImportTicket" EntitySet="ImportTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ImportTic__idPro__46E78A0C" Association="Self.FK__ImportTic__idPro__46E78A0C">
+            <End Role="Provider" EntitySet="Provider" />
+            <End Role="ImportTicket" EntitySet="ImportTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__idProduc__3E52440B" Association="Self.FK__Orders__idProduc__3E52440B">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__idProvi__3B75D760" Association="Self.FK__Product__idProvi__3B75D760">
+            <End Role="Provider" EntitySet="Provider" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CNPMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="idAdmin" />
+          </Key>
+          <Property Name="idAdmin" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExportTicket">
+          <Key>
+            <PropertyRef Name="idExport" />
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idExport" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idProduct" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="addressDelivery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="totalPrice" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ExportTic__idPro__4316F928" FromRole="ExportTicket" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ImportTicket">
+          <Key>
+            <PropertyRef Name="idImport" />
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idImport" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idProduct" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="addressDelivery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="totalPrice" Type="Int32" Nullable="false" />
+          <Property Name="idProvider" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ImportTic__idPro__45F365D3" FromRole="ImportTicket" ToRole="Product" />
+          <NavigationProperty Name="Provider" Relationship="Self.FK__ImportTic__idPro__46E78A0C" FromRole="ImportTicket" ToRole="Provider" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="idInvoice" />
+            <PropertyRef Name="idOrder" />
+          </Key>
+          <Property Name="idInvoice" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idOrder" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="idOrder" />
+            <PropertyRef Name="idProduct" />
+            <PropertyRef Name="date" />
+          </Key>
+          <Property Name="idOrder" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idProduct" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="addressDelivery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Orders__idProduc__3E52440B" FromRole="Orders" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idProduct" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nameProduct" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="category" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="imageProduct" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="inventory" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="idProvider" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ExportTickets" Relationship="Self.FK__ExportTic__idPro__4316F928" FromRole="Product" ToRole="ExportTicket" />
+          <NavigationProperty Name="ImportTickets" Relationship="Self.FK__ImportTic__idPro__45F365D3" FromRole="Product" ToRole="ImportTicket" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__idProduc__3E52440B" FromRole="Product" ToRole="Orders" />
+          <NavigationProperty Name="Provider" Relationship="Self.FK__Product__idProvi__3B75D760" FromRole="Product" ToRole="Provider" />
+        </EntityType>
+        <EntityType Name="Provider">
+          <Key>
+            <PropertyRef Name="idProvider" />
+          </Key>
+          <Property Name="idProvider" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nameProvider" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ImportTickets" Relationship="Self.FK__ImportTic__idPro__46E78A0C" FromRole="Provider" ToRole="ImportTicket" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Product__idProvi__3B75D760" FromRole="Provider" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK__ExportTic__idPro__4316F928">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ExportTicket" Type="Self.ExportTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="ExportTicket">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ImportTic__idPro__45F365D3">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ImportTicket" Type="Self.ImportTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="ImportTicket">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ImportTic__idPro__46E78A0C">
+          <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+          <End Role="ImportTicket" Type="Self.ImportTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="idProvider" />
+            </Principal>
+            <Dependent Role="ImportTicket">
+              <PropertyRef Name="idProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__idProduc__3E52440B">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__idProvi__3B75D760">
+          <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="idProvider" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="idProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CNPMEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="ExportTickets" EntityType="Self.ExportTicket" />
+          <EntitySet Name="ImportTickets" EntityType="Self.ImportTicket" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Providers" EntityType="Self.Provider" />
+          <AssociationSet Name="FK__ExportTic__idPro__4316F928" Association="Self.FK__ExportTic__idPro__4316F928">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ExportTicket" EntitySet="ExportTickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ImportTic__idPro__45F365D3" Association="Self.FK__ImportTic__idPro__45F365D3">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ImportTicket" EntitySet="ImportTickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ImportTic__idPro__46E78A0C" Association="Self.FK__ImportTic__idPro__46E78A0C">
+            <End Role="Provider" EntitySet="Providers" />
+            <End Role="ImportTicket" EntitySet="ImportTickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__idProduc__3E52440B" Association="Self.FK__Orders__idProduc__3E52440B">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__idProvi__3B75D760" Association="Self.FK__Product__idProvi__3B75D760">
+            <End Role="Provider" EntitySet="Providers" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CNPMModelStoreContainer" CdmEntityContainer="CNPMEntities1">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="CNPMModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="idAdmin" ColumnName="idAdmin" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExportTickets">
+            <EntityTypeMapping TypeName="CNPMModel.ExportTicket">
+              <MappingFragment StoreEntitySet="ExportTicket">
+                <ScalarProperty Name="idExport" ColumnName="idExport" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="addressDelivery" ColumnName="addressDelivery" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImportTickets">
+            <EntityTypeMapping TypeName="CNPMModel.ImportTicket">
+              <MappingFragment StoreEntitySet="ImportTicket">
+                <ScalarProperty Name="idImport" ColumnName="idImport" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="addressDelivery" ColumnName="addressDelivery" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="idProvider" ColumnName="idProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="CNPMModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="CNPMModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="addressDelivery" ColumnName="addressDelivery" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="CNPMModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="imageProduct" ColumnName="imageProduct" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="inventory" ColumnName="inventory" />
+                <ScalarProperty Name="idProvider" ColumnName="idProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Providers">
+            <EntityTypeMapping TypeName="CNPMModel.Provider">
+              <MappingFragment StoreEntitySet="Provider">
+                <ScalarProperty Name="idProvider" ColumnName="idProvider" />
+                <ScalarProperty Name="nameProvider" ColumnName="nameProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

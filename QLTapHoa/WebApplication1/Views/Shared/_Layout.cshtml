@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <div class="main-title">
+                <a href="~/Products/ProductList" class="name-page">Cửa hàng tạp hóa</a>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="~/Products/Index">Sản phẩm</a></li>
+                    <li><a href="~/Orders/Index">Đơn hàng</a></li>
+                    <li><a href="~/Providers/Index">Nhà cung cấp</a></li>
+                    <li><a href="#">Báo cáo thống kê</a></li>
+                </ul>
+            </div>
+            <div class="site-action">
+                <ul>
+                    <li>
+                        <a href="#">Tài khoản</a>
+                        <ul class="subnav">
+                            <li><a href="@Url.Action("InfoAdmin", "Admins")">Thông tin</a></li>
+                            <li><a href="@Url.Action("LoginAdmin", "Admins")">Đăng nhập</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid body-content" style="min-height: 80vh">
+        <div class="row">
+            @RenderBody()
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </div>
+</body>
+</html>

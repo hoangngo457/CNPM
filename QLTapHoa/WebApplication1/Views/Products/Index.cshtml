@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WebApplication1.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <h1>DANH MỤC SẢN PHẨM</h1>
+    <button class="btn_add">
+        @Html.ActionLink("Thêm sản phẩm", "Create")
+    </button>
+    <table class="table table-hover table-bordered" style="border-width:thick">
+        <tr>
+            <th> Tên Sản phẩm </th>
+            <th> Số lượng </th>
+            <th> Đơn giá </th>
+            <th> Hình </th>
+            <th> Loại Sản phẩm </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.nameProduct) </td>
+                <td> @Html.DisplayFor(modelItem => item.quantity) </td>
+                <td> @Html.DisplayFor(modelItem => item.price) </td>
+                <td>
+                    <br />
+                    <img src="~/Content/images/@item.imageProduct" width="100" />
+                </td>
+                <td> @Html.DisplayFor(modelItem => item.category) </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.idProduct }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.idProduct }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.idProduct }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

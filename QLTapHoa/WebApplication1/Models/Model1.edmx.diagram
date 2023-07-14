@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c0de6b3b62254968b95f7c27f079e535" Name="Diagram1">
+        <EntityTypeShape EntityType="CNPMModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMModel.ExportTicket" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMModel.ImportTicket" Width="1.5" PointX="8.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMModel.Invoice" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMModel.Order" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMModel.Product" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="CNPMModel.Provider" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="CNPMModel.FK__ExportTic__idPro__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="CNPMModel.FK__ImportTic__idPro__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="CNPMModel.FK__ImportTic__idPro__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="CNPMModel.FK__Orders__idProduc__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="CNPMModel.FK__Product__idProvi__3B75D760" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CNPMModelStoreContainer" CdmEntityContainer="CNPMEntities1">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="CNPMModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="idAdmin" ColumnName="idAdmin" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExportTickets">
+      <EntityTypeMapping TypeName="CNPMModel.ExportTicket">
+        <MappingFragment StoreEntitySet="ExportTicket">
+          <ScalarProperty Name="idExport" ColumnName="idExport" />
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="addressDelivery" ColumnName="addressDelivery" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImportTickets">
+      <EntityTypeMapping TypeName="CNPMModel.ImportTicket">
+        <MappingFragment StoreEntitySet="ImportTicket">
+          <ScalarProperty Name="idImport" ColumnName="idImport" />
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="addressDelivery" ColumnName="addressDelivery" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+          <ScalarProperty Name="idProvider" ColumnName="idProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="CNPMModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="idInvoice" ColumnName="idInvoice" />
+          <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="CNPMModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="addressDelivery" ColumnName="addressDelivery" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="CNPMModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="imageProduct" ColumnName="imageProduct" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="inventory" ColumnName="inventory" />
+          <ScalarProperty Name="idProvider" ColumnName="idProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Providers">
+      <EntityTypeMapping TypeName="CNPMModel.Provider">
+        <MappingFragment StoreEntitySet="Provider">
+          <ScalarProperty Name="idProvider" ColumnName="idProvider" />
+          <ScalarProperty Name="nameProvider" ColumnName="nameProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

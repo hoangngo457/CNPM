@@ -1,0 +1,231 @@
+﻿* {
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0px;
+}
+
+.header {
+    width: 100%;
+    height: 70px;
+    color: black;
+    position: fixed;
+    border: 1px solid silver;
+    background-color: whitesmoke;
+    margin: 0px;
+    position: relative;
+    padding: 10px;
+}
+
+.text {
+    font-size: 30px;
+    margin: 10px 30px;
+    float: left;
+}
+
+.box {
+    width: 300px;
+    height: 50px;
+    float: right;
+    margin-right: 30px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.container {
+    width: 300px;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+}
+
+    .container input {
+        width: 300px;
+        height: 30px;
+        background: white;
+        border: none;
+        font-size: 10pt;
+        float: left;
+        color: #63717f;
+        padding-left: 40px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border: 2px solid silver;
+        border-radius: 5px;
+    }
+
+        .container input#search:hover {
+            border: 2px solid gray;
+        }
+
+    .container .icon {
+        position: absolute;
+        margin-left: 10px;
+        z-index: 1;
+        color: #4f5b66;
+    }
+
+.content {
+    text-align: left;
+    background-color: #ffffff;
+    display: block;
+}
+
+.left_content {
+    height: 100%;
+    float: left;
+    background-color: white;
+    padding: 50px 20px;
+    border-right: 1px solid silver;
+}
+
+.btn_add {
+    background-color: #00ccff;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+    .btn_add:hover {
+        background-color: #0000ff;
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    }
+
+.list {
+    float: left;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: whitesmoke;
+}
+
+    .list ul {
+        list-style-type: none;
+        display: block;
+        padding: 5px;
+        list-style-type: none;
+    }
+
+    .list li {
+        border-bottom: 1px solid silver;
+        padding: 5px;
+        display: block;
+        list-style-type: none;
+    }
+
+    .list a {
+        list-style-type: none;
+        color: black;
+        text-decoration: none;
+    }
+
+    .list ul li:hover {
+        color: blue;
+        counter-reset: #000000;
+        background-color: silver;
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    }
+
+.right_content {
+    width: 79%;
+    float: left;
+    margin-top: 20px;
+    margin-left: 7px;
+}
+
+.link a {
+    color: blue;
+    margin: 8px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+    .link a:hover {
+        color: #cc66ff;
+    }
+
+.frame_head {
+    padding: 5px;
+    margin-top: 20px;
+}
+
+    .frame_head table,
+    td {
+        padding-left: 18px;
+    }
+
+    .frame_head table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .frame_head tr {
+        border-bottom: 1px solid silver;
+    }
+
+.img_prd {
+    float: left;
+}
+
+.edit {
+    position: relative;
+    padding: 3px;
+    font-size: 15px;
+    background-color: #33cc33;
+    border: 2px solid #339900;
+    border-radius: 10px;
+    color: #ffffff;
+    width: 55px;
+    height: 30px;
+    padding-left: 20px;
+    margin-left: 10px;
+}
+
+.delete {
+    position: relative;
+    padding: 3px;
+    font-size: 15px;
+    background-color: #ff3300;
+    border: 2px solid red;
+    border-radius: 10px;
+    color: #ffffff;
+    width: 55px;
+    height: 30px;
+    padding-left: 20px;
+    margin-left: 10px;
+}
+
+.frame .icon_btn {
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 12px;
+    z-index: 1;
+}
+
+.edit:hover {
+    background-color: #339900;
+}
+
+.edit:active {
+    background-color: #3e8e41;
+    box-shadow: 0 1px #666;
+    transform: translateY(1px);
+}
+
+.delete:hover {
+    background-color: red;
+}
+
+.delete:active {
+    background-color: red;
+    box-shadow: 0 1px #666;
+    transform: translateY(1px);
+}
+
