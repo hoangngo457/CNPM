@@ -1,41 +1,105 @@
 ﻿@model IEnumerable<WebApplication1.Models.Product>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách sản phẩm";
 }
 
-<div class="container">
-    <h1>DANH MỤC SẢN PHẨM</h1>
-    <button class="btn_add">
-        @Html.ActionLink("Thêm sản phẩm", "Create")
-    </button>
-    <table class="table table-hover table-bordered" style="border-width:thick">
-        <tr>
-            <th> Tên Sản phẩm </th>
-            <th> Số lượng </th>
-            <th> Đơn giá </th>
-            <th> Hình </th>
-            <th> Loại Sản phẩm </th>
-            <th></th>
-        </tr>
+<link href="~/Content/CSS/style1.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td> @Html.DisplayFor(modelItem => item.nameProduct) </td>
-                <td> @Html.DisplayFor(modelItem => item.quantity) </td>
-                <td> @Html.DisplayFor(modelItem => item.price) </td>
-                <td>
-                    <br />
-                    <img src="~/Content/images/@item.imageProduct" width="100" />
-                </td>
-                <td> @Html.DisplayFor(modelItem => item.category) </td>
-                <td>
-                    @Html.ActionLink("Sửa", "Edit", new { id = item.idProduct }, new { @class = "btn btn-success" })
-                    @Html.ActionLink("Chi tiết", "Details", new { id = item.idProduct }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Xóa", "Delete", new { id = item.idProduct }, new { @class = "btn btn-danger" })
-                </td>
-            </tr>
-        }
-    </table>
-</div>
+<body>
+    
+    <div class="header1">
+        <div class="text">
+            <p>Sản phẩm</p>
+        </div>
+
+        <div class="box">
+            <div class="container">
+                <span class="icon">
+                    <img src="~/Content/Images/search.png" width="30" height="30" />
+                </span>
+                <input type="search"
+                       id="search"
+                       placeholder="Tìm kiếm sản phẩm...." />
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="left_content">
+            <div>
+                <button type="button" class="btn_add">
+                    @Html.ActionLink("Thêm sản phẩm", "Create")
+                </button>
+            </div>
+            <div class="list">
+                <div>
+
+                    @Html.ActionLink("Danh mục sản phẩm", "Index", "Categories")
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="right_content">
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Hình ảnh</td>
+                        <td>Tên sản phẩm</td>
+                        <td>Tình trạng</td>
+                        <td>Số lượng</td>
+                        <td>Đơn giá</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="~/Content/images/@item.imageProduct" width="30" />
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.nameProduct)</td>
+                            <td>@Html.DisplayFor(modelItem => item.status)</td>
+                            <td>@Html.DisplayFor(modelItem => item.quantity)</td>
+                            <td>@Html.DisplayFor(modelItem => item.price)</td>
+                            <td>
+                                <a href="@Url.Action("Details", "Products", new { id = item.idProduct })" class="btn btn-success">Xem</a>
+
+                                <a href="@Url.Action("Edit", "Products", new { id = item.idProduct })" class="btn btn-primary btn-edit">Sửa</a>
+
+                                @*<a onclick="DeleteProduct('@item.idProduct')" class="btn btn-danger btn-edit">Xóa</a>*@
+
+                                <button class="btn btn-danger btn-delete" data-id="@item.idProduct">Xóa</button>
+                            </td>
+                        </tr>
+                     }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script>
+            $(document).ready(function () {
+            $('.btn-delete').click(function () {
+                var button = $(this);
+                var id = button.data('id');
+                var confirmation = confirm("Bạn có chắc chắn muốn xóa sản phẩm?");
+                if (confirmation == true) {
+
+                    button.closest('tr').remove();
+                    alert("Xóa thành công.")
+                }
+            });
+        });
+
+            
+        </script>
+    }
+</body>

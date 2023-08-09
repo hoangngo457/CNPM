@@ -24,14 +24,14 @@ namespace WebApplication1.Models
     
         public string idProduct { get; set; }
         public string nameProduct { get; set; }
-        public string category { get; set; }
+        public string idCategory { get; set; }
         public int price { get; set; }
         public int quantity { get; set; }
         public string imageProduct { get; set; }
         public string status { get; set; }
-        public string inventory { get; set; }
         public string idProvider { get; set; }
     
+        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ExportTicket> ExportTickets { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -21,23 +21,36 @@ CREATE TABLE Provider
 (
   idProvider VARCHAR(10) NOT NULL,-- Mã nhà cung cấp 
   nameProvider NVARCHAR(30) NOT NULL, -- tên nhà cung cấp
+  locationProvider NVARCHAR(300) NOT NULL,
+  phoneProvider CHAR(10) NOT NULL,
+  emailProvider NVARCHAR(30) NOT NULL,
+  productsandservicesProvider NVARCHAR(100) NOT NULL,
+  policiesandtermsProvider NVARCHAR(1000) NOT NULL,
   PRIMARY KEY (idProvider),
+);
+
+CREATE TABLE Category(
+idCategory VARCHAR(10) NOT NULL,
+nameCategory NVARCHAR(50) NOT NULL,
+PRIMARY KEY(idCategory)
 );
 
 CREATE TABLE Product
 (
   idProduct VARCHAR(10) NOT NULL,-- Mã sản phẩm
   nameProduct NVARCHAR(30) NOT NULL, -- Tên sản phẩm
-  category NVARCHAR(20) NOT NULL, -- Loại sản phẩm 
+  idCategory VARCHAR(10) NOT NULL, -- Loại sản phẩm 
   price INT NOT NULL, -- Giá từng sản phẩm 
   quantity INT NOT NULL, -- Số lượng hiện có 
   imageProduct VARCHAR(50), -- Hình ảnh sản phẩm
   status NVARCHAR(30) NOT NULL, -- Tình trạng sử dụng 
-  inventory NVARCHAR(30), -- Kho ?? 
   idProvider VARCHAR(10) NOT NULL,
   PRIMARY KEY (idProduct),
-  FOREIGN KEY (idProvider) REFERENCES Provider(idProvider)
+  FOREIGN KEY (idProvider) REFERENCES Provider(idProvider),
+  FOREIGN KEY (idCategory) REFERENCES Category(idCategory)
 );
+
+
 
 CREATE TABLE Orders
 (
@@ -98,23 +111,35 @@ INSERT INTO Admin (idAdmin, username, phone, gender, email)
 VALUES ('ad01', 'admin', '123456789', N'nam', 'admin@gmail.com');
 
 --Bảng provider
-INSERT INTO Provider (idProvider, nameProvider)
-VALUES ('PRV01', N'Công ty Cổ phần Tràng An');
+INSERT INTO Provider (idProvider, nameProvider,locationProvider,phoneProvider,emailProvider,productsandservicesProvider,policiesandtermsProvider)
+VALUES ('PRV01', N'Công ty Cổ phần Tràng An',N'46 Bàu Bàng Phường 13,Quận Tân Bình, TPHCM ','0399121048','nhoxtuananh092@gmail.com',N'Bánh Ngọt',N'không đổi trả hàng');
 
-INSERT INTO Provider (idProvider, nameProvider)
-VALUES ('PRV02', N'Công ty TNHH IWater');
 
-INSERT INTO Provider (idProvider, nameProvider)
-VALUES ('PRV03', N'Công ty TNHH Top Xanh');
+INSERT INTO Provider (idProvider, nameProvider,locationProvider,phoneProvider,emailProvider,productsandservicesProvider,policiesandtermsProvider)
+VALUES ('PRV02', N'Công ty TNHH IWater',N'50 Bàu Bàng Phường 12,Quận Tân Bình, TPHCM ','0399121041','nhoxtuananh091@gmail.com',N'Nước Ngọt',N'không đổi trả hàng');
+
+INSERT INTO Provider (idProvider, nameProvider,locationProvider,phoneProvider,emailProvider,productsandservicesProvider,policiesandtermsProvider)
+VALUES ('PRV03', N'Công ty TNHH Top Xanh',N'90 Bàu Bàng Phường 14,Quận Tân Bình, TPHCM ','0399121047','nhoxtuananh090@gmail.com',N'Kẹo',N'không đổi trả hàng');
+
+
+--Bảng Category
+INSERT INTO Category(idCategory, nameCategory)
+VALUES ('CT01', N'Thức ăn');
+INSERT INTO Category(idCategory, nameCategory)
+VALUES ('CT02', N'Đồ uống');
+INSERT INTO Category(idCategory, nameCategory)
+VALUES ('CT03', N'Đồ chơi');
+
+
 
 --Bảng Product
 
-INSERT INTO Product (idProduct, nameProduct, category, price, quantity, imageProduct, status, inventory, idProvider)
+INSERT INTO Product (idProduct, nameProduct, idCategory, price, quantity, imageProduct, status, idProvider)
 VALUES
-    ('SP01', N'Bimbim Lay''s', N'Thức ăn', 10000, 20, NULL, N'còn hàng', N'kho quận 10', 'PRV01'),
-    ('SP02', N'Coca-Cola', N'Đồ uống', 15000, 40, NULL, N'còn hàng', N'kho quận 10', 'PRV02'),
-    ('SP03', N'Bánh ngọt', N'Thức ăn', 25000, 15, NULL, N'còn hàng', N'kho quận 10', 'PRV01'),
-    ('SP04', N'Súng nước', N'Đồ chơi', 20000, 0, NULL, N'hết hàng', NULL, 'PRV03');
+    ('SP01', N'Bimbim Lay''s', 'CT01', 10000, 20, 'lays.jpg', N'còn hàng', 'PRV01'),
+    ('SP02', N'Coca-Cola', 'CT02', 15000, 40, 'colacola.jpg', N'còn hàng', 'PRV02'),
+    ('SP03', N'Bánh ngọt', 'CT01', 25000, 15, 'snack.jpg', N'còn hàng', 'PRV01'),
+    ('SP04', N'Súng nước', 'CT03', 20000, 0, 'sungnuoc.jpg', N'hết hàng', 'PRV03');
 
 -- Bảng Orders
 INSERT INTO Orders (idOrder, idProduct, date, quantity, status, addressDelivery, price)
@@ -155,3 +180,22 @@ VALUES
     ('HD02', 'OD02', '2023-03-27', N'đã thanh toán', 20000);
 
 
+create trigger tr_check_status on Product 
+for insert, update
+as 
+begin
+	declare @sl int, @masp varchar(10);
+	select @masp= idProduct
+	from inserted
+
+	select @sl= quantity
+	from Product
+	where idProduct = @masp
+
+	if @sl=0
+	begin
+		update Product
+		set status = N'Hết hàng'
+		where idProduct=@masp
+	end
+end

@@ -1,82 +1,75 @@
 ﻿@model WebApplication1.Models.Product
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Thông tin sản phẩm";
 }
 
-<h2>Details</h2>
+<link href="~/Content/CSS/style2.css" rel="stylesheet" />
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nameProduct)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nameProduct)
-        </dd>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-        <dt>
-            @Html.DisplayNameFor(model => model.category)
-        </dt>
+    <div class="link">
+        @Html.ActionLink("Trở về danh sách sản phẩm", "Index")
+    </div>
+    <div>
+        <h1>Thông tin Sản phẩm</h1>
+    </div>
+    <div class="content">
+        <div class="loadImg">
+            <img src="~/Content/images/@Model.imageProduct" width="200" />
+        </div>
+        <div class="info">
+            <table>
+                
+                <tr>
+                    <td>Tên sản phẩm:</td>
+                    <td>
+                        @Html.DisplayFor(model => model.nameProduct)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Loại sản phẩm:</td>
+                    <td>
+                        <div class="col-md-10">
+                            @Html.DisplayFor(model => model.idCategory)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tình trạng:</td>
+                    <td>
+                        @Html.DisplayFor(model => model.status)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Số lượng:</td>
+                    <td>
+                        @Html.DisplayFor(model => model.quantity)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Đơn giá:</td>
+                    <td>
+                        @Html.DisplayFor(model => model.price)
+                    </td>
+                </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.category)
-        </dd>
+                <tr>
+                    <td>Nhà Cung Cấp:</td>
+                    <td>
+                        @Html.DisplayFor(model => model.idProvider)
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="form-group">
+            <a href="@Url.Action("Edit", "Products", new { id = Model.idProduct })" class="btn btn-primary btn-edit">Sửa</a>
+        </div>
+    </div>
+}
 
-        <dt>
-            @Html.DisplayNameFor(model => model.price)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.price)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.quantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.quantity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.imageProduct)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.imageProduct)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.inventory)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.inventory)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Provider.nameProvider)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Provider.nameProvider)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idProduct }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

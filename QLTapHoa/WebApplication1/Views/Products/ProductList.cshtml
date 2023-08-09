@@ -13,8 +13,7 @@
                 <p style="font-size: 17px;">@Html.DisplayFor(model => pro.nameProduct)</p>
                 <p>Đơn giá : <font color="red">@Html.DisplayFor(model => pro.price)</font></p>
                 <p style="text-align: center; padding-bottom: 20px;">
-                    @Html.ActionLink("Chi tiết", "Details", new { id = pro.idProduct }, new { @class = "btn btn-primary" })
-
+                    <a class="btn btn-info" href="~/Views/Products/Details"> Chi tiết </a>
                 </p>
             </div>
         </div>

@@ -9,7 +9,7 @@ namespace WebApplication1.Controllers
 {
     public class LoginAdminsController : Controller
     {
-        private CNPMEntities1 db = new CNPMEntities1();
+        private CNPMEntities db = new CNPMEntities();
         // GET: LoginAdmins
         public ActionResult Index()
         {

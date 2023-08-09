@@ -1,0 +1,95 @@
+﻿* {
+    margin: 0px;
+    background-color: white;
+    vertical-align: middle;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.link {
+    margin: 10px 100px;
+    color: blue;
+}
+
+    .link a {
+        display: inline;
+        text-decoration: none;
+        color: blue;
+        margin: 10px;
+    }
+
+        .link a:hover {
+            color: #cc66ff;
+        }
+
+div h1 {
+    margin-left: 500px;
+    margin-top: 20px;
+}
+
+.content {
+    float: left;
+    margin: 10px 180px;
+    text-align: center;
+}
+
+.loadImg {
+    float: left;
+    width: 200px;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+    .loadImg input {
+        margin-top: 10px;
+        margin-left: 25px;
+    }
+
+.info {
+    position: relative;
+    float: left;
+    width: fit-content;
+    margin-left: 10px;
+}
+
+    .info table {
+        text-align: left;
+        margin-left: 20px;
+    }
+
+        .info table tr td {
+            padding: 7px;
+            padding-right: 20px;
+        }
+
+    .info input {
+        font-size: 15px;
+        border: none;
+        border-bottom: 1px solid black;
+    }
+
+.btn_add {
+    margin-top: 30px;
+    margin-left: 250px;
+    font-size: 25px;
+    padding: 10px 15px;
+    border: none;
+    background-color: #3399ff;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-bottom: 50px;
+}
+
+    .btn_add:hover {
+        background-color: blue;
+    }
+
+    .btn_add:active {
+        background-color: blue;
+        box-shadow: 0 2px #8b8b8b;
+        transform: translateY(2px);
+    }

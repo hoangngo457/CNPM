@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ExportTicketsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImportTicketsController.cs" />
@@ -137,11 +138,15 @@
     <Compile Include="Controllers\LoginAdminsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="Controllers\ProvidersController.cs" />
+    <Compile Include="Controllers\ProviderController.cs" />
+    <Compile Include="Controllers\StatistícController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Admin.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ExportTicket.cs">
@@ -196,12 +201,13 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\CSS\style1.css" />
+    <Content Include="Content\CSS\style2.css" />
     <Content Include="Content\images\cocacola.jpg" />
     <Content Include="Content\images\lays.jpg" />
     <Content Include="Content\images\snack.jpg" />
     <Content Include="Content\images\sungnuoc.jpg" />
     <Content Include="Content\myStyle.css" />
-    <Content Include="Content\Style1.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -257,7 +263,6 @@
     <Content Include="Views\Admins\Edit.cshtml" />
     <Content Include="Views\Admins\Index.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
@@ -284,11 +289,14 @@
     <Content Include="Views\Products\ProductList.cshtml" />
     <Content Include="Views\Admins\InfoAdmin.cshtml" />
     <Content Include="Views\Admins\LoginAdmin.cshtml" />
-    <Content Include="Views\Providers\Create.cshtml" />
-    <Content Include="Views\Providers\Delete.cshtml" />
-    <Content Include="Views\Providers\Details.cshtml" />
-    <Content Include="Views\Providers\Edit.cshtml" />
-    <Content Include="Views\Providers\Index.cshtml" />
+    <Content Include="Views\Provider\Index.cshtml" />
+    <Content Include="Views\Provider\CreateProvider.cshtml" />
+    <Content Include="Views\Provider\EditProvider.cshtml" />
+    <Content Include="Views\Provider\DetailProvider.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Statistíc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

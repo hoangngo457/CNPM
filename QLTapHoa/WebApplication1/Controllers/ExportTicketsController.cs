@@ -12,7 +12,7 @@ namespace WebApplication1.Controllers
 {
     public class ExportTicketsController : Controller
     {
-        private CNPMEntities1 db = new CNPMEntities1();
+        private CNPMEntities db = new CNPMEntities();
 
         // GET: ExportTickets
         public ActionResult Index()

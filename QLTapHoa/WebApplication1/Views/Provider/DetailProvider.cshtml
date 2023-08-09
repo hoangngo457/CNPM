@@ -1,0 +1,81 @@
+﻿@model WebApplication1.Models.Provider
+@{
+    ViewBag.Title = "DetailProvider";
+
+}
+
+<h2 class="page-title">Thông tin chi tiết nhà cung cấp</h2>
+@using (Html.BeginForm("Deltail", "Provider"))
+{
+    @Html.AntiForgeryToken()
+    <div class="provider-details">
+        <h4 class="provider-title">Nhà Cung Cấp</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <label>ID Provider:</label>
+            <dd class="data-value">@Html.DisplayFor(model => model.idProvider)</dd>
+            <label>Tên nhà cung cấp:</label>
+            <dd class="data-value">@Html.DisplayFor(model => model.nameProvider)</dd>
+            <label>Địa chỉ:</label>
+            <dd class="data-value">@Html.DisplayFor(model => model.locationProvider)</dd>
+
+            <label>Số Điện Thoại:</label>
+            <dd class="data-value">@Html.DisplayFor(model => model.phoneProvider)</dd>
+
+            <label>Email</label>
+            <dd class="data-value">@Html.DisplayFor(model => model.emailProvider)</dd>
+
+            <label>Sản phẩm và dịch vụ:</label>
+            <dd class="data-value">@Html.DisplayFor(model => model.productsandservicesProvider)</dd>
+
+            <label>Chính sách và điều khoản:</label>
+            <dd class="data-value">@Html.DisplayFor(model => model.policiesandtermsProvider)</dd>
+        </dl>
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Quay lại danh sách nhà cung cấp", "Index")
+</p>
+<style>
+    .provider-details {
+        margin-bottom: 20px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+
+    .provider-title {
+        margin-bottom: 10px;
+        color: #333;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .dl-horizontal {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .data-label {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .data-value {
+        color: #333;
+        word-wrap: break-word;
+    }
+
+    .page-title {
+        color: #333;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+</style>

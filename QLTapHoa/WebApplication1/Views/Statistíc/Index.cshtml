@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+
+}
+
+
+
+<div id="chartContainer" style="height: 400px; width: 100%;"></div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var chartData = @Html.Raw(Json.Encode(ViewBag.ChartData));
+
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "light1",
+                title: {
+                    text: "Biểu đồ số lượng sản phẩm trong cửa hàng"
+                },
+                axisX: {
+                    title: "Biểu đồ 1"
+                },
+                axisY: {
+                    title: "Số lượng sản phẩm"
+                },
+                data: [{
+                    type: "column",
+                    dataPoints: chartData.map(function (item) {
+                        return { label: item.ProductName, y: item.Quantity };
+                    })
+                }]
+            });
+            chart.render();
+        }
+    </script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
+}

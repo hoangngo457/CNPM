@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WebApplication1.Models.Category>
+
+
+@{
+    ViewBag.Title = "Danh mục sản phẩm";
+}
+
+<link href="~/Content/CSS/style1.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<body>
+    <div class="link">
+        @Html.ActionLink("Trở về danh mục sản phẩm", "Index", "Products")
+    </div>
+
+    <div class="content">
+        <div class="left_content">
+            <div>
+                <button type="button" class="btn_add">
+                    @Html.ActionLink("Thêm loại sản phẩm mới", "Create")
+                </button>
+            </div>
+        </div>
+
+        <div class="right_content">
+
+            <table class="table table-striped">
+                <tr>
+                    <th> Tên Loại Sản phẩm</th>
+                    <th></th>
+                </tr>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nameCategory)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", "Categories", new { id = item.idCategory })" class="btn btn-primary btn-edit">Sửa</a>
+                                <button class="btn btn-danger btn-delete" id="btn_xoa" data-id="@item.idCategory">Xóa</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @section Scripts {
+        <script>
+            $(document).ready(function () {
+                $('.btn-delete').click(function () {
+                    var button = $(this);
+                    var id = button.data('id');
+                    var confirmation = confirm("Bạn có chắc chắn muốn xóa loại sản phẩm này?");
+                    if (confirmation) {
+                        button.closest('tr').remove();
+                        alert("Xóa thành công.")
+                    }
+                });
+            });
+        </script>
+        }
+</body>

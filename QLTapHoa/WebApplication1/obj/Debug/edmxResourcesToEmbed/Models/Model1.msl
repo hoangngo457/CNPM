@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CNPMModelStoreContainer" CdmEntityContainer="CNPMEntities1">
+  <EntityContainerMapping StorageEntityContainer="CNPMModelStoreContainer" CdmEntityContainer="CNPMEntities">
     <EntitySetMapping Name="Admins">
       <EntityTypeMapping TypeName="CNPMModel.Admin">
         <MappingFragment StoreEntitySet="Admin">
@@ -9,6 +9,14 @@
           <ScalarProperty Name="phone" ColumnName="phone" />
           <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="CNPMModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+          <ScalarProperty Name="nameCategory" ColumnName="nameCategory" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -68,12 +76,11 @@
         <MappingFragment StoreEntitySet="Product">
           <ScalarProperty Name="idProduct" ColumnName="idProduct" />
           <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
-          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="idCategory" ColumnName="idCategory" />
           <ScalarProperty Name="price" ColumnName="price" />
           <ScalarProperty Name="quantity" ColumnName="quantity" />
           <ScalarProperty Name="imageProduct" ColumnName="imageProduct" />
           <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="inventory" ColumnName="inventory" />
           <ScalarProperty Name="idProvider" ColumnName="idProvider" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -83,6 +90,11 @@
         <MappingFragment StoreEntitySet="Provider">
           <ScalarProperty Name="idProvider" ColumnName="idProvider" />
           <ScalarProperty Name="nameProvider" ColumnName="nameProvider" />
+          <ScalarProperty Name="locationProvider" ColumnName="locationProvider" />
+          <ScalarProperty Name="phoneProvider" ColumnName="phoneProvider" />
+          <ScalarProperty Name="emailProvider" ColumnName="emailProvider" />
+          <ScalarProperty Name="productsandservicesProvider" ColumnName="productsandservicesProvider" />
+          <ScalarProperty Name="policiesandtermsProvider" ColumnName="policiesandtermsProvider" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

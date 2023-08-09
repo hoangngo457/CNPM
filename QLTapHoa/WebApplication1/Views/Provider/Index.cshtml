@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Danh sách nhà cung cấp";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Quay lại trang chủ", "Index")
+    </p>
+
+    <div class="container">
+        <h2>Danh sách nhà cung cấp</h2>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID provider</th>
+                    <th>Tên nhà cung cấp</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Sản phẩm và dịch vụ</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var provider in Model)
+                {
+                    <tr>
+                        <td>@provider.idProvider</td>
+                        <td>@provider.nameProvider</td>
+                        <td>@provider.emailProvider</td>
+                        <td>@provider.phoneProvider</td>
+                        <td>@provider.productsandservicesProvider</td>
+                        <td>
+                            <a href="@Url.Action("DetailProvider", "Provider", new { id = provider.idProvider })" class="btn btn-success">xem</a>
+
+                            <a href="@Url.Action("EditProvider", "Provider", new { id = provider.idProvider })" class="btn btn-primary btn-edit">Sửa</a>
+
+                            <button class="btn btn-danger btn-delete" data-id="@provider.idProvider">Xóa</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @section Scripts {
+        <script>
+        $(document).ready(function () {
+            $('.btn-delete').click(function () {
+                var button = $(this);
+                var id = button.data('id');
+                var confirmation = confirm("Bạn có chắc chắn muốn xóa nhà cung cấp này?");
+                if (confirmation) {
+                    $.ajax({
+                        url: '@Url.Action("DeleteProviderConfirmed", "Provider")',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (result) {
+                            if (result.success) {
+                                button.closest('tr').remove();
+                                alert("Xóa Thành Công");
+                            } else {
+                                alert("Không thể xóa nhà cung cấp.");
+                            }
+                        },
+                        error: function () {
+                            alert("Đã xảy ra lỗi khi xóa nhà cung cấp.");
+                        }
+                    });
+                }
+            });
+        });
+        </script>
+
+
+    }
+
+</body>
+</html>

@@ -12,7 +12,7 @@ namespace WebApplication1.Controllers
 {
     public class AdminsController : Controller
     {
-        private CNPMEntities1 db = new CNPMEntities1();
+        private CNPMEntities db = new CNPMEntities();
 
         // GET: Admins
         public ActionResult Index()

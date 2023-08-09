@@ -12,7 +12,7 @@ namespace WebApplication1.Controllers
 {
     public class ImportTicketsController : Controller
     {
-        private CNPMEntities1 db = new CNPMEntities1();
+        private CNPMEntities db = new CNPMEntities();
 
         // GET: ImportTickets
         public ActionResult Index()

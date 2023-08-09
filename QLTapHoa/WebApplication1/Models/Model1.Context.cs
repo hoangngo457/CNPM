@@ -13,10 +13,10 @@ namespace WebApplication1.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CNPMEntities1 : DbContext
+    public partial class CNPMEntities : DbContext
     {
-        public CNPMEntities1()
-            : base("name=CNPMEntities1")
+        public CNPMEntities()
+            : base("name=CNPMEntities")
         {
         }
     
@@ -26,6 +26,7 @@ namespace WebApplication1.Models
         }
     
         public virtual DbSet<Admin> Admins { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<ExportTicket> ExportTickets { get; set; }
         public virtual DbSet<ImportTicket> ImportTickets { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }

@@ -12,7 +12,7 @@ namespace WebApplication1.Controllers
 {
     public class OrdersController : Controller
     {
-        private CNPMEntities1 db = new CNPMEntities1();
+        private CNPMEntities db = new CNPMEntities();
 
         // GET: Orders
         public ActionResult Index()

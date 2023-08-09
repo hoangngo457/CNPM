@@ -10,6 +10,14 @@
     <Property Name="gender" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="idCategory" />
+    </Key>
+    <Property Name="idCategory" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nameCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Product__idCateg__3E52440B" FromRole="Category" ToRole="Product" />
+  </EntityType>
   <EntityType Name="ExportTicket">
     <Key>
       <PropertyRef Name="idExport" />
@@ -22,7 +30,7 @@
     <Property Name="addressDelivery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="price" Type="Int32" Nullable="false" />
     <Property Name="totalPrice" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Product" Relationship="Self.FK__ExportTic__idPro__4316F928" FromRole="ExportTicket" ToRole="Product" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__ExportTic__idPro__45F365D3" FromRole="ExportTicket" ToRole="Product" />
   </EntityType>
   <EntityType Name="ImportTicket">
     <Key>
@@ -37,8 +45,8 @@
     <Property Name="price" Type="Int32" Nullable="false" />
     <Property Name="totalPrice" Type="Int32" Nullable="false" />
     <Property Name="idProvider" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Product" Relationship="Self.FK__ImportTic__idPro__45F365D3" FromRole="ImportTicket" ToRole="Product" />
-    <NavigationProperty Name="Provider" Relationship="Self.FK__ImportTic__idPro__46E78A0C" FromRole="ImportTicket" ToRole="Provider" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__ImportTic__idPro__48CFD27E" FromRole="ImportTicket" ToRole="Product" />
+    <NavigationProperty Name="Provider" Relationship="Self.FK__ImportTic__idPro__49C3F6B7" FromRole="ImportTicket" ToRole="Provider" />
   </EntityType>
   <EntityType Name="Invoice">
     <Key>
@@ -64,7 +72,7 @@
     <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="addressDelivery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="price" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Product" Relationship="Self.FK__Orders__idProduc__3E52440B" FromRole="Orders" ToRole="Product" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__Orders__idProduc__412EB0B6" FromRole="Orders" ToRole="Product" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -72,17 +80,17 @@
     </Key>
     <Property Name="idProduct" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="nameProduct" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="category" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="idCategory" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="price" Type="Int32" Nullable="false" />
     <Property Name="quantity" Type="Int32" Nullable="false" />
     <Property Name="imageProduct" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="inventory" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="idProvider" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="ExportTickets" Relationship="Self.FK__ExportTic__idPro__4316F928" FromRole="Product" ToRole="ExportTicket" />
-    <NavigationProperty Name="ImportTickets" Relationship="Self.FK__ImportTic__idPro__45F365D3" FromRole="Product" ToRole="ImportTicket" />
-    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__idProduc__3E52440B" FromRole="Product" ToRole="Orders" />
-    <NavigationProperty Name="Provider" Relationship="Self.FK__Product__idProvi__3B75D760" FromRole="Product" ToRole="Provider" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__Product__idCateg__3E52440B" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="ExportTickets" Relationship="Self.FK__ExportTic__idPro__45F365D3" FromRole="Product" ToRole="ExportTicket" />
+    <NavigationProperty Name="ImportTickets" Relationship="Self.FK__ImportTic__idPro__48CFD27E" FromRole="Product" ToRole="ImportTicket" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__idProduc__412EB0B6" FromRole="Product" ToRole="Orders" />
+    <NavigationProperty Name="Provider" Relationship="Self.FK__Product__idProvi__3D5E1FD2" FromRole="Product" ToRole="Provider" />
   </EntityType>
   <EntityType Name="Provider">
     <Key>
@@ -90,10 +98,27 @@
     </Key>
     <Property Name="idProvider" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="nameProvider" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="ImportTickets" Relationship="Self.FK__ImportTic__idPro__46E78A0C" FromRole="Provider" ToRole="ImportTicket" />
-    <NavigationProperty Name="Products" Relationship="Self.FK__Product__idProvi__3B75D760" FromRole="Provider" ToRole="Product" />
+    <Property Name="locationProvider" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phoneProvider" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="emailProvider" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="productsandservicesProvider" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="policiesandtermsProvider" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ImportTickets" Relationship="Self.FK__ImportTic__idPro__49C3F6B7" FromRole="Provider" ToRole="ImportTicket" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Product__idProvi__3D5E1FD2" FromRole="Provider" ToRole="Product" />
   </EntityType>
-  <Association Name="FK__ExportTic__idPro__4316F928">
+  <Association Name="FK__Product__idCateg__3E52440B">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="idCategory" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="idCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ExportTic__idPro__45F365D3">
     <End Role="Product" Type="Self.Product" Multiplicity="1" />
     <End Role="ExportTicket" Type="Self.ExportTicket" Multiplicity="*" />
     <ReferentialConstraint>
@@ -105,7 +130,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ImportTic__idPro__45F365D3">
+  <Association Name="FK__ImportTic__idPro__48CFD27E">
     <End Role="Product" Type="Self.Product" Multiplicity="1" />
     <End Role="ImportTicket" Type="Self.ImportTicket" Multiplicity="*" />
     <ReferentialConstraint>
@@ -117,7 +142,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ImportTic__idPro__46E78A0C">
+  <Association Name="FK__ImportTic__idPro__49C3F6B7">
     <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
     <End Role="ImportTicket" Type="Self.ImportTicket" Multiplicity="*" />
     <ReferentialConstraint>
@@ -129,7 +154,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Orders__idProduc__3E52440B">
+  <Association Name="FK__Orders__idProduc__412EB0B6">
     <End Role="Product" Type="Self.Product" Multiplicity="1" />
     <End Role="Orders" Type="Self.Order" Multiplicity="*" />
     <ReferentialConstraint>
@@ -141,7 +166,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Product__idProvi__3B75D760">
+  <Association Name="FK__Product__idProvi__3D5E1FD2">
     <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
     <End Role="Product" Type="Self.Product" Multiplicity="*" />
     <ReferentialConstraint>
@@ -153,31 +178,36 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="CNPMEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="CNPMEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
     <EntitySet Name="ExportTickets" EntityType="Self.ExportTicket" />
     <EntitySet Name="ImportTickets" EntityType="Self.ImportTicket" />
     <EntitySet Name="Invoices" EntityType="Self.Invoice" />
     <EntitySet Name="Orders" EntityType="Self.Order" />
     <EntitySet Name="Products" EntityType="Self.Product" />
     <EntitySet Name="Providers" EntityType="Self.Provider" />
-    <AssociationSet Name="FK__ExportTic__idPro__4316F928" Association="Self.FK__ExportTic__idPro__4316F928">
+    <AssociationSet Name="FK__Product__idCateg__3E52440B" Association="Self.FK__Product__idCateg__3E52440B">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ExportTic__idPro__45F365D3" Association="Self.FK__ExportTic__idPro__45F365D3">
       <End Role="Product" EntitySet="Products" />
       <End Role="ExportTicket" EntitySet="ExportTickets" />
     </AssociationSet>
-    <AssociationSet Name="FK__ImportTic__idPro__45F365D3" Association="Self.FK__ImportTic__idPro__45F365D3">
+    <AssociationSet Name="FK__ImportTic__idPro__48CFD27E" Association="Self.FK__ImportTic__idPro__48CFD27E">
       <End Role="Product" EntitySet="Products" />
       <End Role="ImportTicket" EntitySet="ImportTickets" />
     </AssociationSet>
-    <AssociationSet Name="FK__ImportTic__idPro__46E78A0C" Association="Self.FK__ImportTic__idPro__46E78A0C">
+    <AssociationSet Name="FK__ImportTic__idPro__49C3F6B7" Association="Self.FK__ImportTic__idPro__49C3F6B7">
       <End Role="Provider" EntitySet="Providers" />
       <End Role="ImportTicket" EntitySet="ImportTickets" />
     </AssociationSet>
-    <AssociationSet Name="FK__Orders__idProduc__3E52440B" Association="Self.FK__Orders__idProduc__3E52440B">
+    <AssociationSet Name="FK__Orders__idProduc__412EB0B6" Association="Self.FK__Orders__idProduc__412EB0B6">
       <End Role="Product" EntitySet="Products" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
-    <AssociationSet Name="FK__Product__idProvi__3B75D760" Association="Self.FK__Product__idProvi__3B75D760">
+    <AssociationSet Name="FK__Product__idProvi__3D5E1FD2" Association="Self.FK__Product__idProvi__3D5E1FD2">
       <End Role="Provider" EntitySet="Providers" />
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
